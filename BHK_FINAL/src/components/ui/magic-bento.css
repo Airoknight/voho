@@ -1,0 +1,88 @@
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.magic-bento-card {
+    position: relative;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    /* border: 1px solid rgba(255, 255, 255, 0.1); */
+    background-color: #060010;
+    /* Fallback */
+}
+
+/* Border Glow Effect */
+.magic-bento-card--border-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5rem;
+    padding: 2px;
+    /* Border width */
+    background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%),
+            rgba(var(--glow-color), var(--glow-intensity, 0)) 0%,
+            transparent var(--glow-radius, 0px));
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: background 0.1s ease;
+}
+
+
+.magic-bento-card__header {
+    margin-bottom: 2rem;
+}
+
+.magic-bento-card__label {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    backdrop-filter: blur(4px);
+}
+
+.magic-bento-card__content {
+    color: white;
+}
+
+.magic-bento-card__title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+    font-family: var(--font-playfair), serif;
+}
+
+.magic-bento-card__description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    font-family: var(--font-inter), sans-serif;
+}
+
+/* Auto Hide Text on Hover Logic - optional */
+.magic-bento-card--text-autohide .magic-bento-card__content {
+    /* transform: translateY(0); */
+    /* transition: transform 0.3s ease; */
+}

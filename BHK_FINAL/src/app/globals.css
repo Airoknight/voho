@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@layer base {
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    overscroll-behavior-x: none;
+    position: relative;
+  }
+
+  /* Smooth GPU-accelerated transitions for all interactive elements */
+  a,
+  button {
+    transition: all 0.3s cubic-bezier(0.25, 0.4, 0.25, 1);
+  }
+
+  img {
+    transition: transform 0.7s cubic-bezier(0.25, 0.4, 0.25, 1);
+  }
+
+  /* Smooth section transitions */
+  section {
+    will-change: transform;
+  }
+
+  :root {
+    --background: #ffffff;
+    --foreground: #1F1F1F;
+
+    --card: #ffffff;
+    --card-foreground: #1F1F1F;
+
+    --popover: #ffffff;
+    --popover-foreground: #1F1F1F;
+
+    --primary: #0F2822;
+    --primary-foreground: #D4AF37;
+
+    --secondary: #D4AF37;
+    --secondary-foreground: #0F2822;
+
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
+
+    --accent: #D4AF37;
+    --accent-foreground: #0F2822;
+
+    --destructive: #ef4444;
+    --destructive-foreground: #f8fafc;
+
+    --border: #e4e4e7;
+    --input: #e4e4e7;
+    --ring: #1F1F1F;
+    --radius: 0.5rem;
+  }
+}
+
+/* Custom scrollbar for elegance */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.5);
+}

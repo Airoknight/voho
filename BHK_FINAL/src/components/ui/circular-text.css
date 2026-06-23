@@ -1,0 +1,29 @@
+.circular-text {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    /* Let clicks pass through unless hovering specifically on text which is handled by js */
+}
+
+.circular-text span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform-origin: 0 100px;
+    /* Adjust based on circle size */
+    font-family: var(--font-playfair), serif;
+    font-weight: 700;
+    color: hsl(var(--foreground));
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    height: 100px;
+    /* Half of width */
+    width: 20px;
+    /* Approx char width */
+    text-align: center;
+}
