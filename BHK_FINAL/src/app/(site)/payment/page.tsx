@@ -166,7 +166,7 @@ export default function PaymentPage() {
     };
 
     if (isSuccess) {
-        const phone = "916300328336";
+        const phone = "918977665668";
         const checkInStr = bookingDetails?.checkIn ? new Date(bookingDetails.checkIn).toLocaleDateString("en-IN", { day: 'numeric', month: 'short', year: 'numeric' }) : "Not Specified";
         const checkOutStr = bookingDetails?.checkOut ? new Date(bookingDetails.checkOut).toLocaleDateString("en-IN", { day: 'numeric', month: 'short', year: 'numeric' }) : "Not Specified";
         const billDateStr = new Date().toLocaleDateString("en-IN", { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
