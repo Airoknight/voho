@@ -123,25 +123,29 @@ export default function PaymentPage() {
             setUploadedReceiptUrl(receiptUrl);
 
             // 2. Save booking details + receipt URL to local backend
-            const backendResponse = await fetch("http://localhost:5000/api/bookings", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    fullName: bookingDetails?.fullName || "Guest",
-                    email: bookingDetails?.email || "N/A",
-                    phone: bookingDetails?.phone || "N/A",
-                    checkIn: bookingDetails?.checkIn || new Date().toISOString().split('T')[0],
-                    checkOut: bookingDetails?.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
-                    rooms: bookingDetails?.rooms || [{ title: "Room Reservation", price: subtotal }],
-                    total: total,
-                    receiptUrl: receiptUrl
-                })
-            });
+            try {
+                const backendResponse = await fetch("http://localhost:5000/api/bookings", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        fullName: bookingDetails?.fullName || "Guest",
+                        email: bookingDetails?.email || "N/A",
+                        phone: bookingDetails?.phone || "N/A",
+                        checkIn: bookingDetails?.checkIn || new Date().toISOString().split('T')[0],
+                        checkOut: bookingDetails?.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
+                        rooms: bookingDetails?.rooms || [{ title: "Room Reservation", price: subtotal }],
+                        total: total,
+                        receiptUrl: receiptUrl
+                    })
+                });
 
-            if (!backendResponse.ok) {
-                console.warn("Could not save to local backend, proceeding anyway.");
+                if (!backendResponse.ok) {
+                    console.warn("Could not save to local backend, proceeding anyway.");
+                }
+            } catch (err) {
+                console.warn("Backend fetch failed, proceeding anyway since WhatsApp is primary:", err);
             }
 
             // 3. Fallback: Copy receipt link to clipboard

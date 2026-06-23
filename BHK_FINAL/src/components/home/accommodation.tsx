@@ -215,7 +215,7 @@ function RoomModal({ room, onClose }: { room: any, onClose: () => void }) {
                             </div>
                         </div>
                         <Link
-                            href={`/checkout?room=${room.id}&price=${room.price.replace('₹', '').replace(',', '')}`}
+                            href={`/booking?room=${room.id}`}
                             className="block w-full text-center py-4 bg-primary text-white font-bold rounded-xl hover:bg-accent transition-colors"
                         >
                             Book Now

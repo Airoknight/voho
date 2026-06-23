@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function imagePath(src: string) {
-  const basePath = process.env.NODE_ENV === "production" ? "/BHK_FINAL" : "";
+  const basePath = (process.env.NODE_ENV === "production" && !process.env.VERCEL) ? "/BHK_FINAL" : "";
   // Ensure src starts with / if not present
   const safeSrc = src.startsWith("/") ? src : `/${src}`;
   return `${basePath}${safeSrc}`;

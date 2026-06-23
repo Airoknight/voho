@@ -1,8 +1,8 @@
 "use client";
 
 import { Header } from "../../../components/layout/header";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Check, Users, Star, ArrowLeft, Snowflake, Phone, Clock, CreditCard, MapPin, ShoppingBag } from "lucide-react";
@@ -68,9 +68,18 @@ const rooms = [
     }
 ];
 
-export default function BookingPage() {
+function BookingContent() {
     const router = useRouter();
-    const [selectedRooms, setSelectedRooms] = useState([rooms[0]]);
+    const searchParams = useSearchParams();
+    const initialRoomId = searchParams.get("room");
+
+    const [selectedRooms, setSelectedRooms] = useState(() => {
+        if (initialRoomId) {
+            const matched = rooms.find(r => r.id === initialRoomId);
+            if (matched) return [matched];
+        }
+        return [rooms[0]];
+    });
     const [acFilter, setAcFilter] = useState(false);
 
     // Form state variables
@@ -384,5 +393,13 @@ export default function BookingPage() {
             </AnimatePresence>
 
         </main>
+    );
+}
+
+export default function BookingPage() {
+    return (
+        <Suspense fallback={<div className="text-center pt-20">Loading booking...</div>}>
+            <BookingContent />
+        </Suspense>
     );
 }
